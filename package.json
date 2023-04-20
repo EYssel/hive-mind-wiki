@@ -1,0 +1,10 @@
+{
+  "name": "hive-mind-wiki",
+  "version": "1.0.0",
+  "description": "A wiki tool for developers",
+  "main": "index.js",
+  "repository": "https://github.com/Hive-Mind-Wiki/hive-mind-wiki.git",
+  "author": "EYssel",
+  "license": "MIT",
+  "dependencies": {}
+}
