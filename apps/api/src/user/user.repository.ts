@@ -1,7 +1,5 @@
-import { CreateUserDto } from './dto/create-user.dto';
-
 export class UserRepository {
-  async save(createUserDto: CreateUserDto) {
+  async save() {
     throw new Error('Method not implemented.');
   }
 }

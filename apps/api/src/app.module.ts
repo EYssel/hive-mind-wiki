@@ -1,20 +1,12 @@
 import { Module } from '@nestjs/common';
-import { APP_PIPE } from '@nestjs/core';
-import { ZodValidationPipe } from 'nestjs-zod';
+import { DynamooseModule } from 'nestjs-dynamoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [UserModule, AuthModule],
+  imports: [UserModule, DynamooseModule.forRoot()],
   controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: APP_PIPE,
-      useClass: ZodValidationPipe,
-    },
-  ],
+  providers: [AppService],
 })
 export class AppModule {}

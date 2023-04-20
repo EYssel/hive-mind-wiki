@@ -1,54 +1,36 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { UserDto } from './dto/user.dto';
+import { InjectModel, Model } from 'nestjs-dynamoose';
+import { User, UserKey } from './user.interface';
 import { UserRepository } from './user.repository';
-const users: UserDto[] = [
-  {
-    id: '1',
-    firstName: 'John',
-    lastName: 'Doe',
-    username: 'johndoe',
-    email: 'johndoe@test.com',
-    password: 'abc123@DEF',
-  },
-  {
-    id: '2',
-    firstName: 'Jane',
-    lastName: 'Doe',
-    username: 'janedoe',
-    email: 'janedoe@test.com',
-    password: 'abc123@DEF',
-  },
-];
 
 @Injectable()
 export class UserService {
   userRepository: UserRepository;
 
-  constructor() {
+  constructor(
+    @InjectModel('User')
+    private userModel: Model<User, UserKey>,
+  ) {
     this.userRepository = new UserRepository();
   }
 
-  async create(createUserDto: CreateUserDto) {
-    await this.userRepository.save(createUserDto);
-    return 'This action adds a new user';
+  create(user: User) {
+    return this.userModel.create(user);
+  }
+
+  update(key: UserKey, user: Partial<User>) {
+    return this.userModel.update(key, user);
+  }
+
+  delete(key: UserKey) {
+    return this.userModel.update(key, { deletedAt: new Date() });
+  }
+
+  findOne(key: UserKey) {
+    return this.userModel.get(key);
   }
 
   findAll() {
-    return `This action returns all user`;
-  }
-
-  findOne(username: string): UserDto {
-    const oneUser = users.find((user) => user.username === username);
-    return oneUser;
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+    return this.userModel.scan().exec();
   }
 }
