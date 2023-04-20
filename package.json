@@ -6,5 +6,9 @@
   "repository": "https://github.com/Hive-Mind-Wiki/hive-mind-wiki.git",
   "author": "EYssel",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {},
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ]
 }
