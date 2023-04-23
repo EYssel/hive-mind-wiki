@@ -21,7 +21,7 @@ jobs:
         run: |
           npm install -g aws-cdk
           yarn install
-          cdk bootstrap aws://${{ secrets.AWS_ACCESS_KEY_ID }}/${{ secrets.AWS_REGION }}
+          cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_NUMBER }}/${{ secrets.AWS_REGION }}
 
       - name: Deploy API
         run: |
