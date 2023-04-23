@@ -16,3 +16,8 @@ export class ApiStack extends cdk.Stack {
     });
   }
 }
+
+const app = new cdk.App();
+new ApiStack(app, 'InfrastructureStack', {
+  // env: { account: '123456789012', region: 'us-east-1' },
+});
