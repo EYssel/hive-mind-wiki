@@ -8,31 +8,33 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
       AWS_ACCOUNT_NUMBER: ${{ secrets.AWS_ACCOUNT_NUMBER }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "18"
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: $AWS_ACCESS_KEY_ID
-          aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
-          aws-region: $AWS_REGION
-      - name: Check out repository code
-        uses: actions/checkout@v3
-        
-      - name: Bootstrap CDK
-        run: |
-          npm install -g aws-cdk
-          yarn install
-          cdk bootstrap aws://$AWS_ACCOUNT_NUMBER/$AWS_REGION
 
-      - name: Deploy API
-        with:
-          aws-access-key-id: $AWS_ACCESS_KEY_ID
-          aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
-          aws-region: $AWS_REGION
-        run: |
-          cd apps/api/cdk
-          cdk deploy --require-approval never
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/setup-node@v2
+      with:
+        node-version: "18"
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: $AWS_ACCESS_KEY_ID
+        aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
+        aws-region: $AWS_REGION
+    - name: Check out repository code
+      uses: actions/checkout@v3
+      
+    - name: Bootstrap CDK
+      run: |
+        npm install -g aws-cdk
+        yarn install
+        cdk bootstrap aws://$AWS_ACCOUNT_NUMBER/$AWS_REGION
+
+    - name: Deploy API
+      with:
+        aws-access-key-id: $AWS_ACCESS_KEY_ID
+        aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
+        aws-region: $AWS_REGION
+      run: |
+        cd apps/api/cdk
+        cdk deploy --require-approval never
