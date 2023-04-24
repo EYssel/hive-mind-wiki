@@ -18,6 +18,7 @@ export class ApiStack extends cdk.Stack {
       bundling: {
         nodeModules: [
           '@nestjs/core',
+          '@nestjs/common',
           '@nestjs/platform-express',
           'cache-manager',
           'class-validator',
