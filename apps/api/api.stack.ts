@@ -9,8 +9,8 @@ export class ApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    new NodejsFunction(this, 'api', {
-      entry: 'apps/api/src/main.ts',
+    new NodejsFunction(this, 'ApiLambda-Proxy', {
+      entry: './src/main.ts',
       handler: 'handler',
       memorySize: 128,
       architecture: Architecture.ARM_64,
