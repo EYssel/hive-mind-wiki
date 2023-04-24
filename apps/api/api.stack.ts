@@ -1,5 +1,5 @@
 import * as cdk from 'aws-cdk-lib';
-import { Architecture, Runtime } from 'aws-cdk-lib/aws-lambda';
+import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Construct } from 'constructs';
 
@@ -13,7 +13,6 @@ export class ApiStack extends cdk.Stack {
       entry: './src/main.ts',
       handler: 'handler',
       memorySize: 128,
-      architecture: Architecture.ARM_64,
       runtime: Runtime.NODEJS_18_X,
     });
   }
