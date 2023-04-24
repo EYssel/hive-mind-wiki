@@ -24,6 +24,7 @@ export class ApiStack extends cdk.Stack {
           'class-validator',
           'class-transformer',
           'reflect-metadata',
+          'rxjs',
         ],
       },
     });
