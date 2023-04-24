@@ -1,4 +1,5 @@
 import * as cdk from 'aws-cdk-lib';
+import { LambdaIntegration, RestApi } from 'aws-cdk-lib/aws-apigateway';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Construct } from 'constructs';
@@ -9,7 +10,7 @@ export class ApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    new NodejsFunction(this, 'ApiLambda-Proxy', {
+    const apiLambdaProxy = new NodejsFunction(this, 'ApiLambda-Proxy', {
       entry: './src/main.ts',
       handler: 'handler',
       memorySize: 128,
@@ -24,6 +25,14 @@ export class ApiStack extends cdk.Stack {
         ],
       },
     });
+
+    const api = new RestApi(this, 'hive-mind-api', {
+      restApiName: 'Hive Mind API',
+      description:
+        'This service is the API for the Hive Mind Wiki application.',
+    });
+
+    api.root.addMethod('ANY', new LambdaIntegration(apiLambdaProxy));
   }
 }
 
