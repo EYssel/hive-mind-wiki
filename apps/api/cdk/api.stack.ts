@@ -10,7 +10,7 @@ export class ApiStack extends cdk.Stack {
     super(scope, id, props);
 
     new NodejsFunction(this, 'api', {
-      entry: '../src/main.ts',
+      entry: 'apps/api/src/main.ts',
       handler: 'handler',
       memorySize: 128,
       architecture: Architecture.ARM_64,
