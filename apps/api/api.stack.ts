@@ -14,6 +14,9 @@ export class ApiStack extends cdk.Stack {
       handler: 'handler',
       memorySize: 128,
       runtime: Runtime.NODEJS_18_X,
+      bundling: {
+        externalModules: ['@nestjs/core', '@nestjs/platform-express'],
+      },
     });
   }
 }
