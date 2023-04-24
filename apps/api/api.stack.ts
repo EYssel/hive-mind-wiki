@@ -22,6 +22,7 @@ export class ApiStack extends cdk.Stack {
           'cache-manager',
           'class-validator',
           'class-transformer',
+          'reflect-metadata',
         ],
       },
     });
