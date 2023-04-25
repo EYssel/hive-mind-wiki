@@ -26,6 +26,7 @@ export class ApiStack extends cdk.Stack {
           'reflect-metadata',
           'rxjs',
         ],
+        tsconfig: '../tsconfig.json',
       },
     });
 
