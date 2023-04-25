@@ -42,7 +42,7 @@ export class ApiStack extends cdk.Stack {
   }
 }
 
-new ApiStack(app, 'ApiStack', {
+new ApiStack(app, 'HiveMind-ApiStack', {
   env: {
     account: process.env.AWS_ACCOUNT_NUMBER,
     region: process.env.AWS_REGION,
