@@ -4,7 +4,7 @@ import { Context, Handler } from 'aws-lambda';
 import { createServer, proxy } from 'aws-serverless-express';
 import { eventContext } from 'aws-serverless-express/middleware';
 import { Server } from 'http';
-import { AppModule } from './app.module';
+import { AppModule } from './src/app.module';
 
 const express = require('express');
 
