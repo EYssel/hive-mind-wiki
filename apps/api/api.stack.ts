@@ -35,7 +35,9 @@ export class ApiStack extends cdk.Stack {
         'This service is the API for the Hive Mind Wiki application.',
     });
 
-    api.root.addMethod('ANY', new LambdaIntegration(apiLambdaProxy));
+    api.root.addProxy({
+      defaultIntegration: new LambdaIntegration(apiLambdaProxy),
+    });
   }
 }
 
