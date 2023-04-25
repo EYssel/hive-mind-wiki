@@ -11,7 +11,7 @@ export class ApiStack extends cdk.Stack {
     super(scope, id, props);
 
     const apiLambdaProxy = new NodejsFunction(this, 'ApiLambda-Proxy', {
-      entry: '../src/main.ts',
+      entry: './src/main.ts',
       handler: 'handler',
       memorySize: 128,
       runtime: Runtime.NODEJS_18_X,
@@ -26,7 +26,7 @@ export class ApiStack extends cdk.Stack {
           'reflect-metadata',
           'rxjs',
         ],
-        tsconfig: '../tsconfig.json',
+        tsconfig: './tsconfig.json',
       },
     });
 
