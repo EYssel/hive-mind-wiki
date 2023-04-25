@@ -1,9 +1,8 @@
-name: Deploy API
+name: Deploy Hive Mind
 run-name: ${{ github.actor }} is deploying Hive Mind API 🚀
 on: [push]
 jobs:
-  setup-build-deploy:
-
+  deploy-api:
     runs-on: ubuntu-latest
 
     steps:
