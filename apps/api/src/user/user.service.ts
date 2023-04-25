@@ -26,6 +26,6 @@ export class UserService {
   }
 
   findAll() {
-    return this.userModel.scan().exec();
+    return 'this.userModel.scan().exec()';
   }
 }
