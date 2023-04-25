@@ -16,6 +16,7 @@ export class ApiStack extends cdk.Stack {
       memorySize: 128,
       runtime: Runtime.NODEJS_18_X,
       bundling: {
+        preCompilation: true,
         nodeModules: [
           '@nestjs/core',
           '@nestjs/common',
