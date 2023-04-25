@@ -25,7 +25,7 @@ jobs:
         cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_NUMBER}}/${{ secrets.AWS_REGION }}
 
     - name: Deploy API
-      working-directory: ./apps/api
+      working-directory: ./apps/api/cdk
       run: cdk deploy --require-approval never
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
